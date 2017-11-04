@@ -24,10 +24,20 @@ def pick_random_word(list):
     return word
 
 
+# create an attempt method to keep track of the number of attempt available and the number of attempt left
+def allowed_guesses(word):
+
+    allowedguesses = len(word) * 2
+    return allowedguesses
+
+
 # main function where all functions are called
 def main():
 
-    print(pick_random_word(wordlist))
+    # use print functions to ensure correct result for each functions
+    word = pick_random_word(wordlist)
+    print(word)
+    print(allowed_guesses(word))
 
 
 if __name__ == '__main__':
