@@ -8,13 +8,7 @@
 from GameSetup import GameSetup
 from Guess import Guess
 
-game = GameSetup()
-guess = Guess()
 
-goodGuess = Guess()
-goodGuess = []
-badGuess = Guess()
-badGuess = []
 
 # create a list of words
 wordslist = 'awkward', 'bagpipes', 'banjo', 'bungler', 'croquet', 'crypt', 'dwarves', 'fervid', 'fishhook', 'fjord',\
@@ -26,6 +20,11 @@ wordslist = 'awkward', 'bagpipes', 'banjo', 'bungler', 'croquet', 'crypt', 'dwar
 
 # main function where all functions are called
 def main():
+
+    game = GameSetup()
+    guess = Guess()
+    goodguess = []
+    badguess = []
 
     # These 3 variables keep track of the word chosen, the word to be guessed
     # and the number of allowed guesses
@@ -41,22 +40,24 @@ def main():
 
         if guess.is_good_guess(letter, word) is True:
 
-            if guess.has_guess_already_been_guessed(letter, goodGuess) is False:
+            if guess.has_guess_already_been_guessed(letter, goodguess) is False:
 
-                guess.add_to_guessed_list(letter, goodGuess)
                 guess.search_and_update_all_occurences(letter, word, word_to_be_guessed)
+                guess.add_to_guessed_list(letter, goodguess)
+                allowed_attempt = allowed_attempt - 1
 
             else:
                 print('You have already typed that letter before!\n')
 
-        else:
-            guess.add_to_guessed_list(letter, badGuess)
+        elif guess.is_good_guess(letter, word) is False:
+
+            guess.add_to_guessed_list(letter, badguess)
+            allowed_attempt = allowed_attempt - 1
 
         print(word_to_be_guessed)
-        print('Good guesses:', goodGuess)
-        print('Bad guesses:', badGuess)
-        allowed_attempt = allowed_attempt - 1
-        print('You have', allowed_attempt, 'attempts left')
+        print('Good guesses:', goodguess)
+        print('Bad guesses:', badguess)
+        print('You have', allowed_attempt, 'attempts left\n')
         finished = guess.all_letter_guessed(word_to_be_guessed)
 
         if finished is True:

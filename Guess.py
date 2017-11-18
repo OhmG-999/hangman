@@ -15,10 +15,10 @@ class Guess:
         else:
             return False
 
-    # This function is responsible to verify if a
+    # This function is responsible to verify if the letter has already been used as a guess
     def has_guess_already_been_guessed(self, letter, guesseslist):
 
-        if letter in enumerate(guesseslist):
+        if letter in guesseslist:
             return True
 
         else:
