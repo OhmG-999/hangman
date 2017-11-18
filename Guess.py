@@ -44,13 +44,15 @@ class Guess:
     # This function search for all occurrences of the guess in the word
     def search_and_update_all_occurences(self, letter, word, word2):
 
-        # iterate through each characters in the word to be searched
-        for i, ii in enumerate(word):
-            if letter == ii:
+        # iterate through each characters in the word to be found and compare it with user guess
+        i = 0
+        while i < len(word):
+            word[i]
+            if word[i] == letter:
                 word2.pop(i)
                 word2.insert(i, letter)
+            i = i + 1
 
-                return word2
-
+        return word2
 
 

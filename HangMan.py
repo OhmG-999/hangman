@@ -27,13 +27,11 @@ wordslist = 'awkward', 'bagpipes', 'banjo', 'bungler', 'croquet', 'crypt', 'dwar
 # main function where all functions are called
 def main():
 
-    # These 4 variables keep track of the word chosen, the word to be guessed,
-    # the number of allowed guesses and if the word has been fully guessed
+    # These 3 variables keep track of the word chosen, the word to be guessed
+    # and the number of allowed guesses
     word = game.pick_random_word(wordslist)
     word_to_be_guessed = []
     allowed_attempt = game.number_allowed_guesses(word)
-    finished = guess.all_letter_guessed(word_to_be_guessed)
-    print(finished)
 
     print(game.create_letter_placeholders(word, word_to_be_guessed))
 
@@ -58,10 +56,8 @@ def main():
         print('Good guesses:', goodGuess)
         print('Bad guesses:', badGuess)
         allowed_attempt = allowed_attempt - 1
-        print(allowed_attempt)
+        print('You have', allowed_attempt, 'attempts left')
         finished = guess.all_letter_guessed(word_to_be_guessed)
-        print(finished)
-        print(word)
 
         if finished is True:
             print('-- Congratulation! word found --')
