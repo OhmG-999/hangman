@@ -25,6 +25,7 @@ def main():
     guess = Guess()
     goodguess = []
     badguess = []
+    score = 0
 
     # These 3 variables keep track of the word chosen, the word to be guessed
     # and the number of allowed guesses
@@ -45,6 +46,7 @@ def main():
                 guess.search_and_update_all_occurences(letter, word, word_to_be_guessed)
                 guess.add_to_guessed_list(letter, goodguess)
                 allowed_attempt = allowed_attempt - 1
+                score += 20
 
             else:
                 print('You have already typed that letter before!\n')
@@ -53,6 +55,7 @@ def main():
 
             guess.add_to_guessed_list(letter, badguess)
             allowed_attempt = allowed_attempt - 1
+            score -= 1
 
         print(word_to_be_guessed)
         print('Good guesses:', goodguess)
@@ -64,7 +67,8 @@ def main():
             print('-- Congratulation! word found --')
             break
 
-    print('-- GAME OVER--')
+    print('-- GAME OVER--\n')
+    print('-- Your score is', score, 'points \n')
 
 
 if __name__ == '__main__':
