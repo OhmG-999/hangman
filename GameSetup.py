@@ -3,29 +3,32 @@
 from random import randint as randy
 
 
-# This function is responsible to pick a random word from a word list
-def pick_random_word(list_of_word):
+class GameSetup:
 
-    word = list_of_word[randy(0, len(list_of_word))]
+    # This function is a no argument constructor
+    def __init__(self): pass
 
-    return word
+    # This function is responsible to pick a random word from a word list
+    def pick_random_word(self, list_of_word):
 
+        word = list_of_word[randy(1, len(list_of_word))]
 
-# This function is responsible to calculate the number of allowed guesses
-def number_allowed_guesses(word):
+        return word
 
-    allowed_guesses = len(word) * 2
+    # This function is responsible to calculate the number of allowed guesses
+    def number_allowed_guesses(self, word):
 
-    return allowed_guesses
+        allowed_guesses = len(word) * 2
 
+        return allowed_guesses
 
-# This function create an underscore placeholder for each letter
-def create_letter_placeholders(word, word2):
+    # This function create an underscore placeholder for each letter
+    def create_letter_placeholders(self, word, word2):
 
-    for i in range(len(word)):
-        word2.insert(i, '_')
+        for i in range(len(word)):
+            word2.insert(i, '_')
 
-    return word2
+        return word2
 
 
 
