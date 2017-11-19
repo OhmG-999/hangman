@@ -4,18 +4,19 @@
 #                                              created by M. Goardet                                                   #
 #                                                                                                                      #
 ########################################################################################################################
+import os
+import operator
 
 from GameSetup import GameSetup
 from Guess import Guess
-
-
+from DataAccess import DataAccess
 
 # create a list of words
-wordslist = 'awkward', 'bagpipes', 'banjo', 'bungler', 'croquet', 'crypt', 'dwarves', 'fervid', 'fishhook', 'fjord',\
-            'gazebo', 'gypsy', 'haiku', 'haphazard', 'hyphen', 'ivory', 'jazzy', 'jiffy', 'jinx', 'jukebox', 'kayak',\
-            'kiosk', 'klutz', 'memento', 'mystify', 'numb', 'ostracise', 'oxygen', 'pyjama', 'phlegm', 'pixel',\
-            'polka', 'quad', 'quip', 'rhythmic', 'rogue', 'sphinx', 'squawk', 'swivel', 'toady', 'twelfth', 'unzip', \
-            'waxy', 'wildebeest', 'yacht', 'zealous', 'zigzag', 'zippy', 'zombie'
+# wordslist = 'awkward', 'bagpipes', 'banjo', 'bungler', 'croquet', 'crypt', 'dwarves', 'fervid', 'fishhook', 'fjord',\
+#            'gazebo', 'gypsy', 'haiku', 'haphazard', 'hyphen', 'ivory', 'jazzy', 'jiffy', 'jinx', 'jukebox', 'kayak',\
+#           'kiosk', 'klutz', 'memento', 'mystify', 'numb', 'ostracise', 'oxygen', 'pyjama', 'phlegm', 'pixel',\
+#           'polka', 'quad', 'quip', 'rhythmic', 'rogue', 'sphinx', 'squawk', 'swivel', 'toady', 'twelfth', 'unzip', \
+#           'waxy', 'wildebeest', 'yacht', 'zealous', 'zigzag', 'zippy', 'zombie'
 
 
 # main function where all functions are called
@@ -23,13 +24,25 @@ def main():
 
     game = GameSetup()
     guess = Guess()
+    dataaccess = DataAccess()
     goodguess = []
     badguess = []
     score = 0
+    print('--  HANGMAN  --')
+    print('BEGINNER = 1\nINTERMEDIATE = 2\nPRO = 3\n')
+    choice = input('Please enter the number corresponding to your level:\n')
+
+    file = dataaccess.choose_file(choice)
+    path = os.path.expanduser('~/hangman')
+    file_path = os.path.join(path, file)
+
+    text = (dataaccess.read_file(file_path))
+    wordlist = []
+    dataaccess.parse_text(text, wordlist)
 
     # These 3 variables keep track of the word chosen, the word to be guessed
     # and the number of allowed guesses
-    word = game.pick_random_word(wordslist)
+    word = game.pick_random_word(wordlist)
     word_to_be_guessed = []
     allowed_attempt = game.number_allowed_guesses(word)
 

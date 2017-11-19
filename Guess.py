@@ -1,6 +1,4 @@
 
-
-# create a default constructor
 class Guess:
 
     # This function is a no argument constructor
